@@ -45,6 +45,7 @@ public class SecurityConfig {
                 .cors().and()
                 .authorizeHttpRequests((auth) -> {
                     auth.antMatchers("/api/dashboard").hasAnyAuthority("STANDARD", "PREMIUM", "ACCEPTED");
+                    auth.antMatchers("/api/menu").hasAnyAuthority("STANDARD", "PREMIUM", "ACCEPTED");
                     auth.antMatchers("/api/premium").hasAnyAuthority("PREMIUM");
                     auth.antMatchers("/api/test").hasAnyAuthority("STANDARD", "PREMIUM");
                     auth.anyRequest().authenticated();

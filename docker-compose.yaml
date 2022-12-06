@@ -1,0 +1,32 @@
+version: '3.7'
+
+services:
+  app:
+    container_name: fups-backend
+    image: fups-backend
+    build: ./
+    ports:
+      - "8088:8080"
+    depends_on:
+      - postgresqldb
+    networks:
+      - mynet
+
+
+
+  postgresqldb:
+    container_name: postgresqldb
+    image: postgres
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=fups
+    restart: always
+    networks:
+      - mynet
+
+networks:
+  mynet:
+    driver: bridge
